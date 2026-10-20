@@ -107,12 +107,9 @@ jobs:
             exit 1
           fi
 
-      # With trusted publishing the token is not needed: npm trusts this workflow. The token only serves the first
-      # publication, before the package exists on npm.
+      # Trusted publishing: npm trusts this workflow and authenticates the publication by OIDC, so no token is used.
       - name: Publish on npm
         id: npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           tag=latest
           if [[ $GITHUB_REF_NAME == *-* ]]; then tag=next; fi

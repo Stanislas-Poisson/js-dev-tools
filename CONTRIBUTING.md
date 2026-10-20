@@ -56,12 +56,13 @@ Reserved to the maintainer. Tags are plain `X.Y.Z`, signed, and made on `main` o
 
 ## Dependencies held back
 
-Some dependencies stay on an older version because another package does not accept the new one yet. Dependabot is told to skip them in `.github/dependabot.yml`. When the blocking package moves, remove the line there and update the dependency.
+Some dependencies stay on an older version because another package does not accept the new one yet, or because no fixed version exists. Dependabot is told to skip them in `.github/dependabot.yml`. When the blocking package moves, remove the line there and update the dependency.
 
 | Dependency | Held at | Available | Blocked by | Checked |
 | :--- | :--- | :--- | :--- | :--- |
 | `typescript` | 6.0.x | 7.0 | `@typescript-eslint/parser` and `eslint-plugin` accept `typescript >=4.8.4 <6.1.0` only | 2026-10-20 |
 | `@prettier/plugin-php` | 0.25.x | 0.26 | `prettier-plugin-blade` accepts `@prettier/plugin-php ^0.24.0 \|\| ^0.25.0` only | 2026-10-20 |
+| `braces` | 3.0.3 | none | No patched version exists (GHSA-vfj7-8cjw-p6xm, every version up to 3.0.3 is affected). It is reached through `micromatch`, from `stylelint` and `markdownlint-cli2`. `npm audit` lists it as 14 packages | 2026-10-20 |
 
 The same holdbacks apply to `@zairakai/js-dev-tools`, which extends this package.
 

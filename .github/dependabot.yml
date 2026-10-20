@@ -5,6 +5,13 @@ updates:
     target-branch: develop
     schedule:
       interval: weekly
+    ignore:
+      # typescript-eslint accepts typescript >=4.8.4 <6.1.0 only, so TypeScript 7 cannot be installed yet.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      # prettier-plugin-blade accepts @prettier/plugin-php ^0.24.0 || ^0.25.0 only, so 0.26 cannot be installed yet.
+      - dependency-name: "@prettier/plugin-php"
+        versions: [">=0.26.0"]
 
   - package-ecosystem: github-actions
     directory: /

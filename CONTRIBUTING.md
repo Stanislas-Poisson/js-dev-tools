@@ -61,10 +61,10 @@ Some dependencies stay on an older version because another package does not acce
 | Dependency | Held at | Available | Blocked by | Checked |
 | :--- | :--- | :--- | :--- | :--- |
 | `typescript` | 6.0.x | 7.0 | `@typescript-eslint/parser` and `eslint-plugin` accept `typescript >=4.8.4 <6.1.0` only | 2026-10-20 |
-| `@prettier/plugin-php` | 0.25.x | 0.26 | `prettier-plugin-blade` accepts `@prettier/plugin-php ^0.24.0 \|\| ^0.25.0` only | 2026-10-20 |
+| `@prettier/plugin-php` | 0.25.x | 0.26 | `prettier-plugin-blade` accepts `@prettier/plugin-php ^0.24.0 \|\| ^0.25.0` only | 2026-10-24 |
 | `braces` | 3.0.3 | none | No patched version exists (GHSA-vfj7-8cjw-p6xm, every version up to 3.0.3 is affected). It is reached through `micromatch`, from `stylelint` and `markdownlint-cli2`. `npm audit` lists it as 14 packages | 2026-10-20 |
 
-The same holdbacks apply to `@zairakai/js-dev-tools`, which extends this package.
+The same holdbacks apply to `@zairakai/js-dev-tools`, which extends this package. A test (`tests/dependencies.test.js`) fails when a dependency has an invalid peer range, or when one held back here is updated.
 
 ---
 

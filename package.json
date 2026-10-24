@@ -1,6 +1,6 @@
 {
   "name": "@stanislas-poisson/js-dev-tools",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The quality tools of the JavaScript and TypeScript projects: ESLint, Prettier, Stylelint, Vitest, TypeScript and markdownlint configurations, as a base that a project extends.",
   "keywords": [
     "dev-tools",
@@ -58,7 +58,7 @@
   "dependencies": {
     "@eslint/compat": "^2.1.1",
     "@eslint/js": "^10.0.1",
-    "@prettier/plugin-php": "^0.26.0",
+    "@prettier/plugin-php": "^0.25.0",
     "@typescript-eslint/eslint-plugin": "^8.72.0",
     "@typescript-eslint/parser": "^8.72.0",
     "eslint": "^10.13.0",

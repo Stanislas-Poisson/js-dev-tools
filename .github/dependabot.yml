@@ -10,6 +10,7 @@ updates:
     ignore:
       - dependency-name: "typescript"
       - dependency-name: "@prettier/plugin-php"
+      - dependency-name: "policy-sync-test-package"
     # END dependency-policy (npm)
 
   - package-ecosystem: github-actions

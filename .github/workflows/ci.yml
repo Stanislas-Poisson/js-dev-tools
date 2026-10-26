@@ -37,8 +37,7 @@ jobs:
           cache: npm
 
       - run: npm ci
-      # Only a critical advisory fails the build: the others are raised as alerts and handled by the daily updates.
-      - run: npm audit --audit-level=critical
+      - run: npm audit --audit-level=high
 
   test:
     name: Tests (Node.js ${{ matrix.node }})

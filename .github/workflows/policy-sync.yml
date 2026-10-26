@@ -5,8 +5,8 @@ name: Policy sync
 # date, a signed pull request fixes it and is set to merge when the CI passes. Nothing is edited by hand.
 #
 # Secrets of the repository: POLICY_SYNC_TOKEN (a token that can push and open pull requests, so that the CI runs on
-# them), GPG_PRIVATE_KEY_B64 (base64 of the signing key), RELEASE_SIGNER_NAME and RELEASE_SIGNER_EMAIL.
-# Without them the workflow does nothing.
+# them) and GPG_PRIVATE_KEY_B64 (base64 of the signing key). Variables (or secrets) RELEASE_SIGNER_NAME and
+# RELEASE_SIGNER_EMAIL. Without them the workflow does nothing.
 on:
   schedule:
     - cron: "17 4 * * *"
@@ -22,8 +22,8 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.POLICY_SYNC_TOKEN }}
       GPG_PRIVATE_KEY_B64: ${{ secrets.GPG_PRIVATE_KEY_B64 }}
-      RELEASE_SIGNER_NAME: ${{ secrets.RELEASE_SIGNER_NAME }}
-      RELEASE_SIGNER_EMAIL: ${{ secrets.RELEASE_SIGNER_EMAIL }}
+      RELEASE_SIGNER_NAME: ${{ vars.RELEASE_SIGNER_NAME || secrets.RELEASE_SIGNER_NAME }}
+      RELEASE_SIGNER_EMAIL: ${{ vars.RELEASE_SIGNER_EMAIL || secrets.RELEASE_SIGNER_EMAIL }}
     steps:
       - name: Check the secrets
         id: secrets

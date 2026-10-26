@@ -1,0 +1,30 @@
+name: Policy
+
+# A change must not update a package that the dependency policy holds back
+# (https://gitlab.com/zairakai/dependency-policy). The check only reads: it compares package.json and package-lock.json
+# with the target branch.
+on:
+  pull_request:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Dependency policy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Install the update tool
+        run: npm install --no-save --no-audit --no-fund --prefix "$RUNNER_TEMP/tool" @zairakai/js-dev-tools@latest
+
+      - name: Check that no package of the policy is updated
+        run: node "$RUNNER_TEMP/tool/node_modules/@zairakai/js-dev-tools/scripts/update-dependencies.mjs" policy-check "origin/${{ github.base_ref }}"

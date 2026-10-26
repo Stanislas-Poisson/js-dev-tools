@@ -37,7 +37,7 @@ jobs:
           cache: npm
 
       - run: npm ci
-      # The high advisory on braces (through stylelint and markdownlint) has no fixed version yet: only a critical one fails.
+      # Only a critical advisory fails the build: the others are raised as alerts and handled by the daily updates.
       - run: npm audit --audit-level=critical
 
   test:

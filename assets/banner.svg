@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1280 640" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <rect x="0" y="0" width="1280" height="640" style="fill:url(#_Linear1);"/>
+    <path d="M1150,516C1150,501.65 1138.35,490 1124,490L966,490C951.65,490 940,501.65 940,516C940,530.35 951.65,542 966,542L1124,542C1138.35,542 1150,530.35 1150,516Z" style="fill:rgb(15,118,110);"/>
+    <g transform="matrix(1,0,0,1,1045,525)">
+        <text x="-75.574px" y="0px" style="font-family:'SegoeUI-Semibold', 'Segoe UI', sans-serif;font-weight:600;font-size:24px;fill:white;">mark<tspan x="-20.59px -6.129px " y="0px 0px ">do</tspan>wnlint</text>
+    </g>
+    <path d="M924,516C924,501.65 912.35,490 898,490L780,490C765.65,490 754,501.65 754,516C754,530.35 765.65,542 780,542L898,542C912.35,542 924,530.35 924,516Z" style="fill:rgb(49,120,198);"/>
+    <g transform="matrix(1,0,0,1,839,525)">
+        <text x="-57.035px" y="0px" style="font-family:'SegoeUI-Semibold', 'Segoe UI', sans-serif;font-weight:600;font-size:24px;fill:white;">T<tspan x="-45.012px -32.813px " y="0px 0px ">yp</tspan>eScript</text>
+    </g>
+    <g transform="matrix(1,0,0,1,673,525)">
+        <text x="-30.984px" y="0px" style="font-family:'SegoeUI-Semibold', 'Segoe UI', sans-serif;font-weight:600;font-size:24px;fill:white;">Vit<tspan x="-0.785px 11.965px " y="0px 0px ">es</tspan>t</text>
+    </g>
+    <path d="M738,516C738,501.65 726.35,490 712,490L634,490C619.65,490 608,501.65 608,516C608,530.35 619.65,542 634,542L712,542C726.35,542 738,530.35 738,516Z" style="fill:rgb(110,159,24);"/>
+    <path d="M592,516C592,501.65 580.35,490 566,490L468,490C453.65,490 442,501.65 442,516C442,530.35 453.65,542 468,542L566,542C580.35,542 592,530.35 592,516Z" style="fill:rgb(71,85,105);"/>
+    <g transform="matrix(1,0,0,1,517,525)">
+        <text x="-43.74px" y="0px" style="font-family:'SegoeUI-Semibold', 'Segoe UI', sans-serif;font-weight:600;font-size:24px;fill:white;">S<tspan x="-31.365px -22.693px " y="0px 0px ">ty</tspan>lelint</text>
+    </g>
+    <path d="M426,516C426,501.65 414.35,490 400,490L302,490C287.65,490 276,501.65 276,516C276,530.35 287.65,542 302,542L400,542C414.35,542 426,530.35 426,516Z" style="fill:rgb(247,185,62);"/>
+    <g transform="matrix(1,0,0,1,351,525)">
+        <text x="-40.348px" y="0px" style="font-family:'SegoeUI-Semibold', 'Segoe UI', sans-serif;font-weight:600;font-size:24px;fill:rgb(31,41,55);">Pr<tspan x="-17.648px -4.898px " y="0px 0px ">et</tspan>tier</text>
+    </g>
+    <path d="M260,516C260,501.65 248.35,490 234,490L146,490C131.65,490 120,501.65 120,516C120,530.35 131.65,542 146,542L234,542C248.35,542 260,530.35 260,516Z" style="fill:rgb(75,50,195);"/>
+    <g transform="matrix(1,0,0,1,190,525)">
+        <text x="-33.082px" y="0px" style="font-family:'SegoeUI-Semibold', 'Segoe UI', sans-serif;font-weight:600;font-size:24px;fill:white;">ESLint</text>
+    </g>
+    <g transform="matrix(1,0,0,1,444,384)">
+        <text x="0px" y="0px" style="font-family:'SegoeUI', 'Segoe UI', sans-serif;font-size:34px;fill:rgb(203,213,225);">and T<tspan x="81.813px 98.265px " y="0px 0px ">yp</tspan>eScript pro<tspan x="282.409px " y="0px ">j</tspan>ects.</text>
+    </g>
+    <g transform="matrix(1,0,0,1,444,340)">
+        <text x="0px" y="0px" style="font-family:'SegoeUI', 'Segoe UI', sans-serif;font-size:34px;fill:rgb(203,213,225);">The quality to<tspan x="205.909px " y="0px ">o</tspan>ls of<tspan x="288.369px " y="0px "> </tspan>the Ja<tspan x="384.974px 401.26px 418.559px " y="0px 0px 0px ">vaS</tspan>cript</text>
+    </g>
+    <g transform="matrix(1,0,0,1,440,270)">
+        <text x="0px" y="0px" style="font-family:'SegoeUI-Bold', 'Segoe UI', sans-serif;font-weight:700;font-size:104px;fill:rgb(248,250,252);">JS Dev T<tspan x="402.898px 466.477px " y="0px 0px ">oo</tspan>ls</text>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <path d="M512,208C512,93.202 418.798,0 304,0L208,0C93.202,0 0,93.202 0,208L0,304C0,418.798 93.202,512 208,512L304,512C418.798,512 512,418.798 512,304L512,208Z" style="fill:rgb(11,16,32);stroke:rgb(51,65,85);stroke-width:6px;"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <path d="M190,150L100,236L190,322" style="fill:none;fill-rule:nonzero;stroke:rgb(248,250,252);stroke-width:30px;stroke-linecap:round;stroke-linejoin:round;"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <path d="M282,132L230,340" style="fill:none;fill-rule:nonzero;stroke:rgb(247,223,30);stroke-width:30px;stroke-linecap:round;"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <path d="M322,150L412,236L322,322" style="fill:none;fill-rule:nonzero;stroke:rgb(248,250,252);stroke-width:30px;stroke-linecap:round;stroke-linejoin:round;"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <circle cx="116" cy="420" r="20" style="fill:rgb(75,50,195);"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <circle cx="186" cy="420" r="20" style="fill:rgb(247,185,62);"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <circle cx="256" cy="420" r="20" style="fill:rgb(124,138,154);"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <circle cx="326" cy="420" r="20" style="fill:rgb(110,159,24);"/>
+    </g>
+    <g transform="matrix(0.5,0,0,0.5,120,160)">
+        <circle cx="396" cy="420" r="20" style="fill:rgb(49,120,198);"/>
+    </g>
+    <defs>
+        <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1280,640,-640,1280,0,0)"><stop offset="0" style="stop-color:rgb(30,41,59);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(11,16,32);stop-opacity:1"/></linearGradient>
+    </defs>
+</svg>

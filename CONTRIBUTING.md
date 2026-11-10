@@ -12,7 +12,7 @@ Thank you for helping. js-dev-tools gives the quality tools configuration of the
 | **2. Install** | `npm ci` | Install the dependencies. |
 | **3. Branch** | `git checkout -b feature/#TICKET-name develop` | Create a branch from `develop`. |
 | **4. Code** | *(your IDE)* | Keep the change small, and write its test. |
-| **5. Check** | `npm run quality` | Run the whole quality gate: ESLint, Prettier, markdownlint and the tests. |
+| **5. Check** | `npm run quality` | Run the whole quality gate: ESLint, Prettier, markdownlint and the tests. `npm run quality:fix` applies the fixes first. |
 | **6. Commit** | `git commit -m "type(scope): #TICKET subject"` | Use the format of the [zairakai handbook][handbook-git-rules], in English, 72 characters at most. |
 | **7. Push** | `git push origin feature/#TICKET-name` | Push and open a pull request to `develop`. |
 
@@ -27,8 +27,9 @@ A pull request needs a review and is merged with a merge commit.
 | `npm run eslint` | ESLint | Lint the configurations and the tests with the shipped rules. |
 | `npm run prettier` | Prettier | Check the format. `npm run prettier:fix` fixes it. |
 | `npm run markdownlint` | markdownlint | Lint the Markdown files. |
-| `npm test` | Vitest | Check that every configuration loads and that ESLint applies the rules. |
-| `npm run quality` | All | The whole gate. |
+| `npm test` | Vitest | Check that every configuration loads, and that the decisions of the base hold: the options of Prettier, the rules of ESLint and Stylelint, the settings of Vitest and TypeScript, the ignore lists and `.npmrc`. A decision that changes is changed in its test too. |
+| `npm run quality` | All | The whole gate, in this order: ESLint, Prettier, markdownlint, tests. |
+| `npm run quality:fix` | ESLint, Prettier, markdownlint | Apply every fix that a tool can make (`eslint:fix`, `prettier:fix`, `markdownlint:fix`). The tests have no fix: run `npm run quality` after it. |
 
 A rule must not be disabled to hide an error, and an exclusion is explained where it is written.
 

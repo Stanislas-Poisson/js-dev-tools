@@ -4,30 +4,14 @@
 
 export default {
   extends: [
-    'stylelint-config-standard-scss', // Base SCSS rules
-    'stylelint-config-recommended-vue', // Vue SFC support
-    'stylelint-config-html', // HTML support
+    // Base SCSS rules
+    'stylelint-config-standard-scss',
+    // Vue SFC support
+    'stylelint-config-recommended-vue',
+    // HTML support
+    'stylelint-config-html',
   ],
-  plugins: ['stylelint-scss'],
-
-  overrides: [
-    // Vue files
-    {
-      files: ['*.vue', '**/*.vue'],
-      rules: {
-        'scss/at-rule-no-unknown': true,
-      },
-    },
-    // SCSS files
-    {
-      files: ['*.scss', '**/*.scss'],
-      rules: {
-        'scss/at-mixin-argumentless-call-parentheses': 'never',
-        'scss/dollar-variable-pattern': '^[_a-z0-9\\-]+$',
-        'scss/selector-no-redundant-nesting-selector': true,
-      },
-    },
-  ],
+  plugins: ['stylelint-scss', 'stylelint-order'],
 
   rules: {
     // SCSS basics
@@ -41,16 +25,184 @@ export default {
     // Naming conventions
     'scss/dollar-variable-pattern': '^[_a-z0-9\\-]+$',
     'scss/selector-no-redundant-nesting-selector': true,
-  },
 
-  ignoreFiles: [
-    'node_modules/**/*',
-    'dist/**/*',
-    'build/**/*',
-    'coverage/**/*',
-    'public/**/*',
-    '.nuxt/**/*',
-    '.output/**/*',
-    '**/*.min.css',
-  ],
+    // Order of elements inside a block
+    'order/order': [
+      'custom-properties',
+      'dollar-variables',
+      'at-variables',
+      { type: 'at-rule', name: 'extend' },
+      { type: 'at-rule', name: 'include', hasBlock: false },
+      'declarations',
+      'rules',
+      'at-rules',
+    ],
+
+    // Order of properties inside a declaration block; unlisted ones go last, alphabetically
+    'order/properties-order': [
+      [
+        // Content
+        'content',
+
+        // Positioning
+        'position',
+        'inset',
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'z-index',
+        'float',
+        'clear',
+
+        // Display & Layout
+        'display',
+        'flex',
+        'flex-grow',
+        'flex-shrink',
+        'flex-basis',
+        'flex-flow',
+        'flex-direction',
+        'flex-wrap',
+        'place-content',
+        'justify-content',
+        'align-content',
+        'place-items',
+        'justify-items',
+        'align-items',
+        'place-self',
+        'justify-self',
+        'align-self',
+        'order',
+        'grid',
+        'grid-template',
+        'grid-template-rows',
+        'grid-template-columns',
+        'grid-template-areas',
+        'grid-auto-rows',
+        'grid-auto-columns',
+        'grid-auto-flow',
+        'grid-area',
+        'grid-row',
+        'grid-column',
+        'grid-gap',
+        'grid-row-gap',
+        'grid-column-gap',
+        'gap',
+        'row-gap',
+        'column-gap',
+
+        // Box Model
+        'box-sizing',
+        'width',
+        'min-width',
+        'max-width',
+        'height',
+        'min-height',
+        'max-height',
+        'aspect-ratio',
+        'margin',
+        'margin-top',
+        'margin-right',
+        'margin-bottom',
+        'margin-left',
+        'margin-inline',
+        'margin-block',
+        'padding',
+        'padding-top',
+        'padding-right',
+        'padding-bottom',
+        'padding-left',
+        'padding-inline',
+        'padding-block',
+        'border',
+        'border-width',
+        'border-style',
+        'border-color',
+        'border-top',
+        'border-right',
+        'border-bottom',
+        'border-left',
+        'border-radius',
+        'border-top-left-radius',
+        'border-top-right-radius',
+        'border-bottom-right-radius',
+        'border-bottom-left-radius',
+        'border-collapse',
+        'border-spacing',
+        'outline',
+        'outline-offset',
+
+        // Typography
+        'font',
+        'font-family',
+        'font-size',
+        'font-weight',
+        'font-style',
+        'font-variant',
+        'line-height',
+        'letter-spacing',
+        'text-align',
+        'vertical-align',
+        'text-decoration',
+        'text-indent',
+        'text-overflow',
+        'text-transform',
+        'text-shadow',
+        'white-space',
+        'word-break',
+        'word-wrap',
+        'overflow-wrap',
+        'list-style',
+
+        // Visual
+        'color',
+        'background',
+        'background-color',
+        'background-image',
+        'background-repeat',
+        'background-position',
+        'background-size',
+        'background-attachment',
+        'object-fit',
+        'object-position',
+        'box-shadow',
+        'filter',
+        'backdrop-filter',
+        'opacity',
+        'visibility',
+        'overflow',
+        'overflow-x',
+        'overflow-y',
+
+        // Transforms & Animations
+        'transform',
+        'transform-origin',
+        'transition',
+        'transition-property',
+        'transition-duration',
+        'transition-timing-function',
+        'transition-delay',
+        'animation',
+        'animation-name',
+        'animation-duration',
+        'animation-timing-function',
+        'animation-delay',
+        'animation-iteration-count',
+        'animation-direction',
+        'animation-fill-mode',
+        'animation-play-state',
+        'will-change',
+
+        // Miscellaneous
+        'cursor',
+        'user-select',
+        'pointer-events',
+        'resize',
+        'appearance',
+        'scroll-behavior',
+      ],
+      { unspecified: 'bottomAlphabetical' },
+    ],
+  },
 }

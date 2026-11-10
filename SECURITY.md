@@ -14,12 +14,12 @@ Please **do not disclose a vulnerability publicly** until it has been reviewed a
 
 ## Supported versions
 
-| Version | Supported |
+| Release | Supported |
 | :--- | :--- |
-| `1.x` | Yes |
-| `0.1.x` | No |
+| Latest | Yes |
+| Older | No |
 
-Only the latest minor version of the latest major version receives fixes.
+Only the latest release receives fixes.
 
 ---
 

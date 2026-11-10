@@ -8,7 +8,7 @@ Closes #
 
 - [ ] `npm run quality` passes.
 - [ ] The tests cover the change.
-- [ ] The documentation is up to date (README, changelog).
+- [ ] The documentation is up to date (README), and the pull request has the label of its release notes category.
 - [ ] The commits follow `type(scope): #TICKET subject`.
 - [ ] The pull request targets `develop`.
 

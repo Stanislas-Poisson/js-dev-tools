@@ -3,7 +3,7 @@ name: Release
 # A tag X.Y.Z (or X.Y.Z-prerelease) on main publishes the release on GitHub and on npm.
 on:
   push:
-    tags: ["*"]
+    tags: ['*']
 
 permissions:
   contents: write
@@ -12,7 +12,7 @@ permissions:
 env:
   GH_TOKEN: ${{ github.token }}
   VERSION_TAG_REGEX: ${{ vars.VERSION_TAG_REGEX }}
-  PACKAGE: "@stanislas-poisson/js-dev-tools"
+  PACKAGE: '@stanislas-poisson/js-dev-tools'
 
 jobs:
   release:
@@ -95,7 +95,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version: '24'
           registry-url: https://registry.npmjs.org
 
       - run: npm ci

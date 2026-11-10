@@ -14,6 +14,13 @@ import path from 'node:path'
 const gitignorePath = path.resolve(process.cwd(), '.gitignore')
 const gitignoreConfig = existsSync(gitignorePath) ? [includeIgnoreFile(gitignorePath)] : []
 
+// Shared by `no-unused-vars` and `@typescript-eslint/no-unused-vars`
+const unusedVarsOptions = {
+  argsIgnorePattern: '^_',
+  varsIgnorePattern: '^_',
+  caughtErrorsIgnorePattern: '^_',
+}
+
 export default [
   ...gitignoreConfig,
 
@@ -37,25 +44,11 @@ export default [
       },
     },
     rules: {
-      // Yoda style enforcement (Zairakai convention)
-      yoda: [
-        'error',
-        'always',
-        {
-          exceptRange: true,
-          onlyEquality: false,
-        },
-      ],
+      // No yoda conditions (ESLint default)
+      yoda: ['error', 'never'],
 
       // Code quality
-      'no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
+      'no-unused-vars': ['error', unusedVarsOptions],
       'no-unused-expressions': [
         'error',
         {
@@ -110,7 +103,7 @@ export default [
     },
   },
 
-  // TypeScript configuration for .ts / .tsx files
+  // TypeScript parser for .ts / .tsx files
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -119,20 +112,32 @@ export default [
         project: './tsconfig.json',
       },
     },
+  },
+
+  // TypeScript parser for .vue files
+  // vue-eslint-parser (set by pluginVue above) must remain the primary parser.
+  // TypeScript parser is passed as parserOptions.parser for <script> blocks only.
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parserOptions: {
+        parser: parserTypeScript,
+        project: './tsconfig.json',
+        extraFileExtensions: ['.vue'],
+      },
+    },
+  },
+
+  // TypeScript rules for .ts / .tsx / .vue files
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.vue'],
     plugins: {
       '@typescript-eslint': pluginTypeScript,
     },
     rules: {
       'no-unused-vars': 'off',
       'no-undef': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
+      '@typescript-eslint/no-unused-vars': ['error', unusedVarsOptions],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -152,64 +157,9 @@ export default [
     },
   },
 
-  // TypeScript configuration for .vue files
-  // vue-eslint-parser (set by pluginVue above) must remain the primary parser.
-  // TypeScript parser is passed as parserOptions.parser for <script> blocks only.
-  {
-    files: ['**/*.vue'],
-    languageOptions: {
-      parserOptions: {
-        parser: parserTypeScript,
-        project: './tsconfig.json',
-        extraFileExtensions: ['.vue'],
-      },
-    },
-    plugins: {
-      '@typescript-eslint': pluginTypeScript,
-    },
-    rules: {
-      'no-unused-vars': 'off',
-      'no-undef': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/prefer-nullish-coalescing': [
-        'error',
-        {
-          // See the .ts block above for why boolean operands are exempted.
-          ignorePrimitives: { boolean: true },
-        },
-      ],
-      '@typescript-eslint/prefer-optional-chain': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'warn',
-    },
-  },
-
   // Test files
   {
     files: ['**/*.test.{js,ts}', '**/*.spec.{js,ts}', '**/tests/**/*'],
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-        describe: 'readonly',
-        it: 'readonly',
-        test: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        beforeAll: 'readonly',
-        afterAll: 'readonly',
-        vi: 'readonly',
-      },
-    },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       'no-console': 'off',
@@ -221,7 +171,7 @@ export default [
     files: ['**/*.config.{js,ts}', '**/.*rc.{js,ts}'],
     rules: {
       'no-console': 'off',
-      '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
 
@@ -236,6 +186,7 @@ export default [
       'node_modules/**',
       'public/**',
       'storybook-static/**',
+      'vendor/**',
       '.nuxt/**',
       '.output/**',
       '**/*.min.js',

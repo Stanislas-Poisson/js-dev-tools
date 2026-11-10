@@ -9,12 +9,22 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    globals: true,
     environment: 'node',
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov', 'html', 'cobertura'],
-      reportsDirectory: 'build/coverage',
+      thresholds: {
+        lines: 75,
+        functions: 75,
+        branches: 75,
+        statements: 75,
+      },
+      watermarks: {
+        lines: [75, 90],
+        functions: [75, 90],
+        branches: [75, 90],
+        statements: [75, 90],
+      },
       exclude: ['node_modules/**', 'dist/**', 'build/**', '**/*.config.*', '**/*.d.ts'],
     },
   },

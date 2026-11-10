@@ -6,7 +6,7 @@ body:
     id: command
     attributes:
       label: Command
-      description: The command you ran, for example `vendor/bin/js-dev-tools quality`.
+      description: The command you ran, for example `npm run quality` or `yarn quality`.
     validations:
       required: true
   - type: textarea

@@ -1,4 +1,55 @@
+# JetBrains (PhpStorm, WebStorm)
+# ----------------
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code and derivatives
+# ----------------
+.vscode/
+.history/
+
+# Other editors
+# ----------------
+.fleet/
+.zed/
+.vs/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+nbproject/
+*.swp
+*.swo
+*~
+
+# AI assistants
+# ----------------
+# Personal instruction files: not published (the KB repositories force them with exceptions)
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+*.local.md
+.claude/settings.local.json
+.aider*
+.cursor/
+.windsurf/
+.continue/
+.codex/
+.gemini/
+
+# Dependencies
+# ----------------
 /node_modules/
-/build/
-/coverage/
 /.npm/
+
+# Build output
+# ----------------
+/build/
+
+# Tests and coverage
+# ----------------
+/coverage/

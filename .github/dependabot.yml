@@ -8,9 +8,9 @@ updates:
     # The packages held back are the ones of the dependency policy: update-dependencies dependabot-sync keeps this block.
     # BEGIN dependency-policy (npm)
     ignore:
-      - dependency-name: "typescript"
-      - dependency-name: "@prettier/plugin-php"
-      - dependency-name: "stylelint"
+      - dependency-name: 'typescript'
+      - dependency-name: '@prettier/plugin-php'
+      - dependency-name: 'stylelint'
     # END dependency-policy (npm)
 
   - package-ecosystem: github-actions

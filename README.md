@@ -1,6 +1,8 @@
-# JS Dev Tools
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Stanislas-Poisson/js-dev-tools/main/assets/icon.png" alt="JS Dev Tools" width="160">
+</p>
 
-![JS Dev Tools](https://raw.githubusercontent.com/Stanislas-Poisson/js-dev-tools/main/assets/banner.png)
+# JS Dev Tools
 
 [![CI][ci-badge]][ci]
 [![Tests][tests-badge]][ci]

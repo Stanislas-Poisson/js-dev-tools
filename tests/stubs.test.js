@@ -26,6 +26,25 @@ describe('the thin files for the editor', () => {
     ])
   })
 
+  it.each(stubs)('%s is described in the README', (stub) => {
+    expect(read('README.md')).toContain(`stubs/${stub}`)
+  })
+
+  it.each(['eslint', 'prettier', 'stylelint', 'vitest'])(
+    'has a thin %s file at the root, for the editor of this repository',
+    (tool) => {
+      const [, from] = read(`${tool}.config.mjs`).match(/^export \{ default \} from '(.+)'\n$/)
+
+      expect(from).toBe(`./config/${tool}.config.js`)
+      expect(read(from.slice(2))).not.toBe('')
+    },
+  )
+
+  it('extends the files of config at the root, for markdownlint and TypeScript', () => {
+    expect(JSON.parse(read('.markdownlint.json'))).toEqual({ extends: './config/.markdownlint.json' })
+    expect(JSON.parse(read('tsconfig.json'))).toEqual({ extends: './config/tsconfig.base.json' })
+  })
+
   it.each(ignoreFiles)('%s is a copy of the file of the base, in the stubs and at the root', (file) => {
     expect(read(`stubs/${file}`), 'stubs').toBe(read(`config/${file}`))
     expect(read(file), 'root').toBe(read(`config/${file}`))

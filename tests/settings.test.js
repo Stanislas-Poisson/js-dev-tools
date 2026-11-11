@@ -82,4 +82,14 @@ describe('the editor and Markdown decisions', () => {
 
     expect(markdownlint.MD013).toBe(false)
   })
+
+  it('has the markdownlint rules of the PHP base: the same Markdown rules in the JS and PHP projects', () => {
+    const markdownlint = JSON.parse(read('config/.markdownlint.json'))
+
+    expect(markdownlint.MD024).toEqual({ siblings_only: true })
+    expect(markdownlint.MD033).toEqual({ allowed_elements: ['details', 'summary', 'kbd', 'br', 'img', 'a', 'p'] })
+    expect(markdownlint.MD060).toEqual({ style: 'compact' })
+    expect(markdownlint.MD040).toBe(false)
+    expect(markdownlint.MD041).toBe(false)
+  })
 })

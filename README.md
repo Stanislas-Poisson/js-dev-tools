@@ -84,6 +84,29 @@ export default mergeConfig(base, { test: { environment: 'jsdom' } })
 }
 ```
 
+## Files for the editor
+
+The extensions of an editor (ESLint, Prettier, Stylelint, markdownlint) look for the configuration at the root of the project, in the folder of the edited file and its parents. They do not look into `node_modules/`. The `stubs/` folder holds one thin file for each tool: it has no rule of its own and extends the base. Copy the ones you need to the root of the project:
+
+| Tool | File to copy |
+| :--- | :--- |
+| ESLint | `stubs/eslint.config.mjs` |
+| Prettier | `stubs/prettier.config.mjs` |
+| Stylelint | `stubs/stylelint.config.mjs` |
+| Vitest | `stubs/vitest.config.mjs` |
+| TypeScript | `stubs/tsconfig.json` |
+| markdownlint | `stubs/.markdownlint.json` |
+| Prettier ignore | `stubs/.prettierignore` |
+| Stylelint ignore | `stubs/.stylelintignore` |
+| markdownlint ignore | `stubs/.markdownlintignore` |
+
+```bash
+cp node_modules/@stanislas-poisson/js-dev-tools/stubs/eslint.config.mjs .
+cp node_modules/@stanislas-poisson/js-dev-tools/stubs/.markdownlint.json .
+```
+
+Add the rules of the project to the copied file (see [Use](#use)). An ignore file cannot extend another file, and a symbolic link is not published by npm: the three ignore files are **copies** of the ones in `config/`, and a test keeps them identical.
+
 ## What the base sets
 
 | Tool | Main settings |

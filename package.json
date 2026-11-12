@@ -55,6 +55,7 @@
     "README.md"
   ],
   "scripts": {
+    "bats": "bats tests/bats/unit",
     "eslint": "eslint --config config/eslint.config.js config tests",
     "eslint:fix": "eslint --fix --config config/eslint.config.js config tests",
     "markdownlint": "markdownlint-cli2 --config config/.markdownlint.json '**/*.md' '#node_modules' '#.github'",
@@ -62,7 +63,7 @@
     "prettier": "prettier . --check --config config/prettier.config.js --ignore-path config/.prettierignore",
     "prettier:fix": "prettier . --write --config config/prettier.config.js --ignore-path config/.prettierignore",
     "test": "vitest run",
-    "quality": "npm run eslint && npm run prettier && npm run markdownlint && npm test",
+    "quality": "npm run eslint && npm run prettier && npm run markdownlint && npm test && npm run bats",
     "quality:fix": "npm run eslint:fix && npm run prettier:fix && npm run markdownlint:fix"
   },
   "dependencies": {
@@ -88,6 +89,7 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^5.1.0",
+    "bats": "^1.13.0",
     "markdownlint-cli2": "^0.24.0",
     "typescript": "^6.0.3",
     "vitest": "^5.1.0"

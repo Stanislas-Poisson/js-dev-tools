@@ -32,16 +32,32 @@ describe('the dependencies', () => {
     const { peerDependencies, peerDependenciesMeta } = JSON.parse(
       readFileSync(new URL('package.json', root), 'utf8'),
     )
+    const { stylelint, ...optional } = peerDependencies
 
-    expect(Object.keys(peerDependencies).sort()).toEqual([
+    expect(Object.keys(optional).sort()).toEqual([
       '@vitest/coverage-v8',
       'markdownlint-cli2',
       'typescript',
       'vitest',
     ])
 
-    for (const name of Object.keys(peerDependencies)) {
+    for (const name of Object.keys(optional)) {
       expect(peerDependenciesMeta[name], name).toEqual({ optional: true })
     }
+
+    expect(stylelint).toBeDefined()
+  })
+
+  // The Vue and HTML configs of Stylelint accept any version (>=16) of it: without a peer, npm puts the latest one at the
+  // root of the project and the one of the package, which the rules need, nested. The `stylelint` command of the project
+  // would then run a version that does not know the rules of the config.
+  it('asks for Stylelint as a required peer, so that the project has only one', () => {
+    const { dependencies, peerDependencies, peerDependenciesMeta } = JSON.parse(
+      readFileSync(new URL('package.json', root), 'utf8'),
+    )
+
+    expect(dependencies.stylelint).toBeUndefined()
+    expect(peerDependencies.stylelint).toMatch(/^\^18\./)
+    expect(peerDependenciesMeta.stylelint).toBeUndefined()
   })
 })

@@ -110,7 +110,7 @@ describe('the npm settings', () => {
 })
 
 describe('the editor and Markdown decisions', () => {
-  it('has one base section, the 80 columns of JavaScript and one difference for Markdown in .editorconfig', () => {
+  it('has one base section, the 80 columns of JavaScript, TypeScript and Vue and one difference for Markdown in .editorconfig', () => {
     const editorconfig = read('.editorconfig')
 
     expect(editorconfig).toContain(
@@ -119,7 +119,9 @@ describe('the editor and Markdown decisions', () => {
     expect(editorconfig).toContain(
       '[*.md]\ntrim_trailing_whitespace = false\nindent_size = unset\n',
     )
-    expect(editorconfig).toContain('[*.{js,mjs}]\nmax_line_length = 80\n')
+    expect(editorconfig).toContain(
+      '[*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue}]\nmax_line_length = 80\n',
+    )
     expect(editorconfig).not.toContain('max_line_length = 120')
   })
 

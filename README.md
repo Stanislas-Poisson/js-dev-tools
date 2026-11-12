@@ -40,7 +40,7 @@ npm install --save-dev @stanislas-poisson/js-dev-tools
 
 Requires Node.js 24 or later.
 
-The package installs ESLint, Prettier and Stylelint, with their plugins. The tools whose configuration it ships but that a project chooses are **optional peer dependencies**: Vitest (with `@vitest/coverage-v8`), TypeScript and markdownlint-cli2. Install the ones you use.
+The package installs ESLint and Prettier, with their plugins, and the plugins of Stylelint. Stylelint itself is a **required peer dependency** (npm installs it with the package): a project then has a single version, the one that the rules need. The tools whose configuration it ships but that a project chooses are **optional peer dependencies**: Vitest (with `@vitest/coverage-v8`), TypeScript and markdownlint-cli2. Install the ones you use.
 
 ## Use
 

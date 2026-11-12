@@ -1,4 +1,7 @@
 import { ESLint } from 'eslint'
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import eslintConfig from '../config/eslint.config.js'
 
@@ -21,6 +24,53 @@ describe('the ESLint decisions', () => {
     expect(
       await rulesOf('const a = 1\nif (a === 1) {\n  a.toString()\n}\n', 'a.js'),
     ).not.toContain('yoda')
+  })
+
+  it('forbids yoda conditions in the templates of Vue files', async () => {
+    // A Vue file is linted with types: the file of the test is allowed by default in a temporary folder
+    const dir = mkdtempSync(path.join(tmpdir(), 'eslint-vue-'))
+    writeFileSync(path.join(dir, 'tsconfig.json'), '{}')
+    const vueEslint = new ESLint({
+      overrideConfigFile: true,
+      overrideConfig: [
+        ...eslintConfig,
+        {
+          files: ['**/*.vue'],
+          languageOptions: {
+            parserOptions: {
+              projectService: { allowDefaultProject: ['*.vue'] },
+              tsconfigRootDir: dir,
+            },
+          },
+        },
+      ],
+      cwd: dir,
+    })
+    const rules = async (condition) => {
+      const [result] = await vueEslint.lintText(
+        `<template>\n  <p v-if="${condition}">x</p>\n</template>\n<script setup lang="ts">\nconst a: number = 1\n</script>\n`,
+        { filePath: path.join(dir, 'a.vue') },
+      )
+
+      return result.messages.map((message) => message.ruleId)
+    }
+
+    try {
+      for (const condition of [
+        '1 === a',
+        "'x' !== a",
+        '0 < a',
+        'undefined === a',
+      ]) {
+        expect(await rules(condition)).toContain('vue/no-restricted-syntax')
+      }
+
+      for (const condition of ['a === 1', 'a !== undefined', 'a > 0']) {
+        expect(await rules(condition)).not.toContain('vue/no-restricted-syntax')
+      }
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
   })
 
   it('is made for the web: the Node.js globals are known only where Node.js runs (scripts, tools, bin, tests, config)', async () => {

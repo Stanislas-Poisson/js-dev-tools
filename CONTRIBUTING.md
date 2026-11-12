@@ -13,7 +13,7 @@ Thank you for helping. js-dev-tools gives the quality tools configuration of the
 | **3. Branch** | `git checkout -b feature/#TICKET-name develop` | Create a branch from `develop`. |
 | **4. Code** | *(your IDE)* | Keep the change small, and write its test. |
 | **5. Check** | `npm run quality` | Run the whole quality gate: ESLint, Prettier, markdownlint and the tests. `npm run quality:fix` applies the fixes first. |
-| **6. Commit** | `git commit -m "type(scope): #TICKET subject"` | Use the format of the [zairakai handbook][handbook-git-rules], in English, 72 characters at most. |
+| **6. Commit** | `git commit -m "type(scope): #TICKET subject"` | Use the format of the [zairakai handbook][handbook-git-rules], in English, with a subject of 50 characters at most (after the type, the scope and the ticket). |
 | **7. Push** | `git push origin feature/#TICKET-name` | Push and open a pull request to `develop`. |
 
 A pull request needs a review and is merged with a merge commit.

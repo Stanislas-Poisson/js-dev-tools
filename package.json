@@ -1,6 +1,6 @@
 {
   "name": "@stanislas-poisson/js-dev-tools",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "The quality tools of the JavaScript and TypeScript projects for the web: ESLint, Prettier, Stylelint, Vitest, TypeScript and markdownlint configurations, with the ignore files and the thin files for the editor, as a base that a project extends.",
   "keywords": [
     "dev-tools",

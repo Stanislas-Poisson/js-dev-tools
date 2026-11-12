@@ -1,10 +1,13 @@
-node_modules/
-dist/
-docs/
-build/
-coverage/
-vendor/
-public/
+# Folders
 .nuxt/
 .output/
+build/
+coverage/
+dist/
+docs/
+node_modules/
+public/
+vendor/
+
+# Files
 *.min.css

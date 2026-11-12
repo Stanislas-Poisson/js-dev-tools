@@ -131,8 +131,8 @@ setup() {
 # Settings that must stay
 # ================
 
-@test ".editorconfig sets no line length except the 80 columns of JavaScript" {
-  assert_file_contains "${PROJECT_ROOT}/.editorconfig" "[*.{js,mjs}]"
+@test ".editorconfig sets no line length except the 80 columns of JavaScript, TypeScript and Vue" {
+  assert_file_contains "${PROJECT_ROOT}/.editorconfig" "[*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue}]"
   assert_file_not_contains "${PROJECT_ROOT}/.editorconfig" "max_line_length = 120"
 }
 

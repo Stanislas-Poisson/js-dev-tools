@@ -142,8 +142,8 @@ Every option of every tool, with its value and the reason for it, is in the [han
 
 | Command | Description |
 | :--- | :--- |
-| `npm run quality` | Runs every check, in order: ESLint, Prettier, markdownlint, tests. |
-| `npm run quality:fix` | Applies every fix that a tool can make: ESLint, Prettier, markdownlint. |
+| `npm run quality` | Runs every check, in order: ESLint, Prettier, markdownlint, tests, structure tests (BATS). |
+| `npm run quality:fix` | Applies every fix that a tool can make: ESLint, Prettier, markdownlint (also `quality-fix`, like the other repositories). |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Security reports: [SECURITY.md](SECURITY.md).
 

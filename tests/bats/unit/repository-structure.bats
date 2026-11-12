@@ -143,6 +143,13 @@ setup() {
   assert_file_contains "${PROJECT_ROOT}/package.json" "\"peerDependenciesMeta\""
 }
 
+@test "package.json has the scripts of the other repositories, with the same names" {
+  for name in eslint eslint-fix prettier prettier-fix markdownlint markdownlint-fix \
+    quality quality-fix test bats; do
+    assert_file_contains "${PROJECT_ROOT}/package.json" "\"${name}\":"
+  done
+}
+
 @test ".npmrc keeps the engine and audit settings" {
   assert_file_contains "${PROJECT_ROOT}/.npmrc" "engine-strict=true"
   assert_file_contains "${PROJECT_ROOT}/.npmrc" "audit-level=high"

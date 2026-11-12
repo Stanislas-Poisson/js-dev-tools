@@ -58,13 +58,17 @@
     "bats": "bats tests/bats/unit",
     "eslint": "eslint --config config/eslint.config.js config tests",
     "eslint:fix": "eslint --fix --config config/eslint.config.js config tests",
+    "eslint-fix": "npm run eslint:fix",
     "markdownlint": "markdownlint-cli2 --config config/.markdownlint.json '**/*.md' '#node_modules' '#.github'",
     "markdownlint:fix": "markdownlint-cli2 --fix --config config/.markdownlint.json '**/*.md' '#node_modules' '#.github'",
+    "markdownlint-fix": "npm run markdownlint:fix",
     "prettier": "prettier . --check --config config/prettier.config.js --ignore-path config/.prettierignore",
     "prettier:fix": "prettier . --write --config config/prettier.config.js --ignore-path config/.prettierignore",
+    "prettier-fix": "npm run prettier:fix",
     "test": "vitest run",
     "quality": "npm run eslint && npm run prettier && npm run markdownlint && npm test && npm run bats",
-    "quality:fix": "npm run eslint:fix && npm run prettier:fix && npm run markdownlint:fix"
+    "quality:fix": "npm run eslint:fix && npm run prettier:fix && npm run markdownlint:fix",
+    "quality-fix": "npm run quality:fix"
   },
   "dependencies": {
     "@eslint/compat": "^2.1.1",

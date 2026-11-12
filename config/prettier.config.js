@@ -2,34 +2,21 @@
  * Default Prettier configuration for @stanislas-poisson projects.
  */
 
+import { resolve } from './resolve.js'
+
 const config = {
-  // Core formatting
-  printWidth: 120,
-  tabWidth: 2,
-  useTabs: false,
+  // Only what differs from the defaults of Prettier: no semicolons and single quotes.
+  // The rest is the default (80 columns, 2 spaces, trailing commas everywhere, LF): the width of the Google
+  // JavaScript Style Guide, and nothing to keep in step with a tool that is already right.
   semi: false,
   singleQuote: true,
-  quoteProps: 'as-needed',
-  trailingComma: 'all',
-  bracketSpacing: true,
-  bracketSameLine: false,
-  arrowParens: 'always',
-  endOfLine: 'lf',
-
-  // HTML & Vue specific
-  htmlWhitespaceSensitivity: 'css',
-  vueIndentScriptAndStyle: false,
-  singleAttributePerLine: false,
-
-  // JSX specific
-  jsxSingleQuote: false,
-
-  // Prose formatting
-  proseWrap: 'preserve',
-  embeddedLanguageFormatting: 'auto',
 
   // Plugin configuration
-  plugins: ['prettier-plugin-blade', '@prettier/plugin-php', 'prettier-plugin-organize-imports'],
+  plugins: [
+    'prettier-plugin-blade',
+    '@prettier/plugin-php',
+    'prettier-plugin-organize-imports',
+  ].map(resolve),
 
   // File-specific overrides
   overrides: [
@@ -37,7 +24,7 @@ const config = {
     {
       files: ['*.blade.php'],
       options: {
-        phpVersion: '8.3',
+        phpVersion: '8.4',
         trailingCommaPHP: true,
       },
     },

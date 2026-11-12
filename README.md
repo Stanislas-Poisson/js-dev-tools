@@ -17,7 +17,7 @@
 [![Vitest][vitest-badge]][vitest]
 [![TypeScript][typescript-badge]][typescript]
 
-The quality tools of the JavaScript and TypeScript projects: ESLint, Prettier, Stylelint, Vitest, TypeScript and markdownlint configurations, as a base that a project extends.
+The quality tools of the JavaScript and TypeScript projects for the web: ESLint, Prettier, Stylelint, Vitest, TypeScript and markdownlint configurations, with the ignore files and the thin files for the editor, as a base that a project extends.
 
 ## The principle
 
@@ -40,7 +40,12 @@ npm install --save-dev @stanislas-poisson/js-dev-tools
 
 Requires Node.js 24 or later.
 
+The package installs ESLint, Prettier and Stylelint, with their plugins. The tools whose configuration it ships but that a project chooses are **optional peer dependencies**: Vitest (with `@vitest/coverage-v8`), TypeScript and markdownlint-cli2. Install the ones you use.
+
 ## Use
+
+<details>
+<summary>Configuration examples for each tool</summary>
 
 ```js
 // eslint.config.js
@@ -84,9 +89,14 @@ export default mergeConfig(base, { test: { environment: 'jsdom' } })
 }
 ```
 
+</details>
+
 ## Files for the editor
 
 The extensions of an editor (ESLint, Prettier, Stylelint, markdownlint) look for the configuration at the root of the project, in the folder of the edited file and its parents. They do not look into `node_modules/`. The `stubs/` folder holds one thin file for each tool: it has no rule of its own and extends the base. Copy the ones you need to the root of the project:
+
+<details>
+<summary>The thin files to copy, and the ignore files</summary>
 
 | Tool | File to copy |
 | :--- | :--- |
@@ -107,15 +117,17 @@ cp node_modules/@stanislas-poisson/js-dev-tools/stubs/.markdownlint.json .
 
 Add the rules of the project to the copied file (see [Use](#use)). An ignore file cannot extend another file, and a symbolic link is not published by npm: the three ignore files are **copies** of the ones in `config/`, and a test keeps them identical.
 
+</details>
+
 ## What the base sets
 
 | Tool | Main settings |
 | :--- | :--- |
-| Prettier | 120 columns, 2 spaces, no semicolons, single quotes, trailing commas everywhere (none in JSON), `.vue` script and style not indented |
+| Prettier | 80 columns (its default), 2 spaces, no semicolons, single quotes, trailing commas everywhere (none in JSON), `.vue` script and style not indented |
 | ESLint | Recommended rules, Vue and TypeScript rules, no yoda conditions; the format is left to Prettier |
-| Stylelint | Standard SCSS, Vue and HTML rules; properties in a fixed order (positioning, layout, box model, typography, visual, animations, miscellaneous), the others last in alphabetical order |
+| Stylelint | Standard SCSS, Vue and HTML rules; properties in a fixed order (positioning, layout, box model, typography, visual, animations, miscellaneous; sides clockwise, then block before inline), the others last in alphabetical order. A project changes the order with `createStylelintConfig` (see the [handbook][handbook-configs]) |
 | Vitest | No globals (import `describe`, `it` and `expect` from `vitest`), reports in `coverage/`, 75 % minimum of coverage and 90 % as the good level |
-| TypeScript | Strict, target ES2022, default libraries (DOM included) |
+| TypeScript | Strict, with the checks of `tsc --init` (unchecked indexed access, isolated modules, verbatim module syntax), target ES2025, for a bundler, default libraries (DOM included) |
 | markdownlint | Default rules, without a line length limit |
 
 ## Documentation
@@ -130,8 +142,8 @@ Every option of every tool, with its value and the reason for it, is in the [han
 
 | Command | Description |
 | :--- | :--- |
-| `npm run quality` | Runs every check, in order: ESLint, Prettier, markdownlint, tests. |
-| `npm run quality:fix` | Applies every fix that a tool can make: ESLint, Prettier, markdownlint. |
+| `npm run quality` | Runs every check, in order: ESLint, Prettier, markdownlint, tests, structure tests (BATS). |
+| `npm run quality:fix` | Applies every fix that a tool can make: ESLint, Prettier, markdownlint (also `quality-fix`, like the other repositories). |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Security reports: [SECURITY.md](SECURITY.md).
 

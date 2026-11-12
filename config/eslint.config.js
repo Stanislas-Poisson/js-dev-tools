@@ -12,7 +12,9 @@ import { existsSync } from 'node:fs'
 import path from 'node:path'
 
 const gitignorePath = path.resolve(process.cwd(), '.gitignore')
-const gitignoreConfig = existsSync(gitignorePath) ? [includeIgnoreFile(gitignorePath)] : []
+const gitignoreConfig = existsSync(gitignorePath)
+  ? [includeIgnoreFile(gitignorePath)]
+  : []
 
 // Shared by `no-unused-vars` and `@typescript-eslint/no-unused-vars`
 const unusedVarsOptions = {
@@ -35,8 +37,7 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node,
-        ...globals.es2022,
+        ...globals.es2025,
       },
       parserOptions: {
         ecmaVersion: 'latest',
@@ -109,7 +110,7 @@ export default [
     languageOptions: {
       parser: parserTypeScript,
       parserOptions: {
-        project: './tsconfig.json',
+        projectService: true,
       },
     },
   },
@@ -122,7 +123,7 @@ export default [
     languageOptions: {
       parserOptions: {
         parser: parserTypeScript,
-        project: './tsconfig.json',
+        projectService: true,
         extraFileExtensions: ['.vue'],
       },
     },
@@ -157,18 +158,32 @@ export default [
     },
   },
 
-  // Test files
+  // Scripts and tools of the project: they run in Node.js, unlike the code of the package, which is made for the web
+  {
+    files: ['**/bin/**', '**/scripts/**', '**/tools/**'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+
+  // Test files: they run in Node.js
   {
     files: ['**/*.test.{js,ts}', '**/*.spec.{js,ts}', '**/tests/**/*'],
+    languageOptions: {
+      globals: globals.node,
+    },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       'no-console': 'off',
     },
   },
 
-  // Config files
+  // Config files: they run in Node.js
   {
     files: ['**/*.config.{js,ts}', '**/.*rc.{js,ts}'],
+    languageOptions: {
+      globals: globals.node,
+    },
     rules: {
       'no-console': 'off',
       '@typescript-eslint/no-require-imports': 'off',
@@ -193,6 +208,6 @@ export default [
     ],
   },
 
-  // Prettier — must be last to disable all formatting rules
+  // Prettier: must be last to disable all formatting rules
   eslintConfigPrettier,
 ]

@@ -143,6 +143,12 @@ setup() {
   assert_file_contains "${PROJECT_ROOT}/package.json" "\"peerDependenciesMeta\""
 }
 
+@test "package.json asks for Stylelint as a required peer, not as a dependency" {
+  run node -p "const p = require('${PROJECT_ROOT}/package.json'); [p.dependencies.stylelint === undefined, p.peerDependencies.stylelint !== undefined, (p.peerDependenciesMeta || {}).stylelint === undefined].join()"
+  [ "$status" -eq 0 ]
+  [ "$output" = "true,true,true" ]
+}
+
 @test "package.json has the scripts of the other repositories, with the same names" {
   for name in eslint eslint-fix prettier prettier-fix markdownlint markdownlint-fix \
     quality quality-fix test bats; do

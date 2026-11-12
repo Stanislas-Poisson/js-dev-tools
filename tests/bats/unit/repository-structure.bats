@@ -131,8 +131,8 @@ setup() {
 # Settings that must stay
 # ================
 
-@test ".editorconfig sets no line length except the 80 columns of JavaScript" {
-  assert_file_contains "${PROJECT_ROOT}/.editorconfig" "[*.{js,mjs}]"
+@test ".editorconfig sets no line length except the 80 columns of JavaScript, TypeScript and Vue" {
+  assert_file_contains "${PROJECT_ROOT}/.editorconfig" "[*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue}]"
   assert_file_not_contains "${PROJECT_ROOT}/.editorconfig" "max_line_length = 120"
 }
 
@@ -141,6 +141,12 @@ setup() {
     assert_file_contains "${PROJECT_ROOT}/package.json" "\"${name}\""
   done
   assert_file_contains "${PROJECT_ROOT}/package.json" "\"peerDependenciesMeta\""
+}
+
+@test "package.json asks for Stylelint as a required peer, not as a dependency" {
+  run node -p "const p = require('${PROJECT_ROOT}/package.json'); [p.dependencies.stylelint === undefined, p.peerDependencies.stylelint !== undefined, (p.peerDependenciesMeta || {}).stylelint === undefined].join()"
+  [ "$status" -eq 0 ]
+  [ "$output" = "true,true,true" ]
 }
 
 @test "package.json has the scripts of the other repositories, with the same names" {

@@ -104,6 +104,23 @@ export default [
     },
   },
 
+  // No yoda conditions in the templates: `yoda` only reads the script. A literal or `undefined` on the left of a
+  // comparison is reported (no automatic fix: the operands are swapped by hand, and the operator reversed for < and >).
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            "BinaryExpression[operator=/^(===|!==|==|!=|<|>|<=|>=)$/]:matches([left.type='Literal'], [left.type='Identifier'][left.name='undefined'])",
+          message:
+            'No yoda comparison: put the variable on the left (the base sets `yoda: never`).',
+        },
+      ],
+    },
+  },
+
   // TypeScript parser for .ts / .tsx files
   {
     files: ['**/*.ts', '**/*.tsx'],

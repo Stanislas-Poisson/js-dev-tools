@@ -1,11 +1,18 @@
 import { readFileSync, readdirSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
-const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
+const read = (path) =>
+  readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
 const pkg = JSON.parse(read('package.json'))
 const stubs = readdirSync(new URL('../stubs/', import.meta.url))
-const ignoreFiles = ['.markdownlintignore', '.prettierignore', '.stylelintignore']
-const entryPoints = Object.keys(pkg.exports).map((key) => `${pkg.name}${key.slice(1)}`)
+const ignoreFiles = [
+  '.markdownlintignore',
+  '.prettierignore',
+  '.stylelintignore',
+]
+const entryPoints = Object.keys(pkg.exports).map(
+  (key) => `${pkg.name}${key.slice(1)}`,
+)
 
 describe('the thin files for the editor', () => {
   it('are published with the package', () => {
@@ -33,7 +40,9 @@ describe('the thin files for the editor', () => {
   it.each(['eslint', 'prettier', 'stylelint', 'vitest'])(
     'has a thin %s file at the root, for the editor of this repository',
     (tool) => {
-      const [, from] = read(`${tool}.config.mjs`).match(/^export \{ default \} from '(.+)'\n$/)
+      const [, from] = read(`${tool}.config.mjs`).match(
+        /^export \{ default \} from '(.+)'\n$/,
+      )
 
       expect(from).toBe(`./config/${tool}.config.js`)
       expect(read(from.slice(2))).not.toBe('')
@@ -41,29 +50,43 @@ describe('the thin files for the editor', () => {
   )
 
   it('extends the files of config at the root, for markdownlint and TypeScript', () => {
-    expect(JSON.parse(read('.markdownlint.json'))).toEqual({ extends: './config/.markdownlint.json' })
-    expect(JSON.parse(read('tsconfig.json'))).toEqual({ extends: './config/tsconfig.base.json' })
+    expect(JSON.parse(read('.markdownlint.json'))).toEqual({
+      extends: './config/.markdownlint.json',
+    })
+    // The root file of this repository has no TypeScript file: it lists its JavaScript files, or TypeScript reports that
+    // it found no input. The stub, which is for the projects, only extends.
+    expect(JSON.parse(read('tsconfig.json'))).toEqual({
+      extends: './config/tsconfig.base.json',
+      compilerOptions: { allowJs: true, checkJs: false, noEmit: true },
+      include: ['*.mjs', 'config/**/*.js', 'tests/**/*.js'],
+    })
   })
 
-  it.each(ignoreFiles)('%s is a copy of the file of the base, in the stubs and at the root', (file) => {
-    expect(read(`stubs/${file}`), 'stubs').toBe(read(`config/${file}`))
-    expect(read(file), 'root').toBe(read(`config/${file}`))
-  })
+  it.each(ignoreFiles)(
+    '%s is a copy of the file of the base, in the stubs and at the root',
+    (file) => {
+      expect(read(`stubs/${file}`), 'stubs').toBe(read(`config/${file}`))
+      expect(read(file), 'root').toBe(read(`config/${file}`))
+    },
+  )
 
-  it.each(stubs.filter((stub) => !ignoreFiles.includes(stub)))('%s only extends the base', (stub) => {
-    const content = read(`stubs/${stub}`)
+  it.each(stubs.filter((stub) => !ignoreFiles.includes(stub)))(
+    '%s only extends the base',
+    (stub) => {
+      const content = read(`stubs/${stub}`)
 
-    if (stub.endsWith('.json')) {
-      const { extends: extended, ...rest } = JSON.parse(content)
+      if (stub.endsWith('.json')) {
+        const { extends: extended, ...rest } = JSON.parse(content)
 
-      expect(rest, 'no rule of its own').toEqual({})
-      expect(extended).toMatch(new RegExp(`${pkg.name}/`))
+        expect(rest, 'no rule of its own').toEqual({})
+        expect(extended).toMatch(new RegExp(`${pkg.name}/`))
 
-      return
-    }
+        return
+      }
 
-    const [, from] = content.match(/^export \{ default \} from '(.+)'\n$/)
+      const [, from] = content.match(/^export \{ default \} from '(.+)'\n$/)
 
-    expect(entryPoints).toContain(from)
-  })
+      expect(entryPoints).toContain(from)
+    },
+  )
 })

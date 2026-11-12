@@ -12,6 +12,8 @@ export default defineConfig({
     environment: 'node',
     coverage: {
       provider: 'v8',
+      // Every source file counts, tested or not: a file that no test imports must lower the coverage
+      include: ['src/**'],
       reporter: ['text', 'lcov', 'html', 'cobertura'],
       thresholds: {
         lines: 75,
@@ -25,7 +27,14 @@ export default defineConfig({
         branches: [75, 90],
         statements: [75, 90],
       },
-      exclude: ['node_modules/**', 'dist/**', 'build/**', '**/*.config.*', '**/*.d.ts'],
+      exclude: [
+        'node_modules/**',
+        'dist/**',
+        'build/**',
+        '**/*.config.*',
+        '**/*.d.ts',
+        '**/*.{spec,test}.*',
+      ],
     },
   },
 })

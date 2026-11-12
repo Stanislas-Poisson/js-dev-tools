@@ -53,3 +53,13 @@ GEMINI.md
 # Tests and coverage
 # ----------------
 /coverage/
+
+# Logs
+# ----------------
+*.log
+npm-debug.log*
+
+# Operating system
+# ----------------
+.DS_Store
+Thumbs.db

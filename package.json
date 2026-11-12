@@ -1,7 +1,7 @@
 {
   "name": "@stanislas-poisson/js-dev-tools",
   "version": "2.1.1",
-  "description": "The quality tools of the JavaScript and TypeScript projects: ESLint, Prettier, Stylelint, Vitest, TypeScript and markdownlint configurations, as a base that a project extends.",
+  "description": "The quality tools of the JavaScript and TypeScript projects for the web: ESLint, Prettier, Stylelint, Vitest, TypeScript and markdownlint configurations, with the ignore files and the thin files for the editor, as a base that a project extends.",
   "keywords": [
     "dev-tools",
     "eslint",
@@ -10,7 +10,13 @@
     "vitest",
     "typescript",
     "markdownlint",
-    "code-quality"
+    "code-quality",
+    "configuration",
+    "tsconfig",
+    "vue",
+    "scss",
+    "php",
+    "blade"
   ],
   "homepage": "https://github.com/Stanislas-Poisson/js-dev-tools#readme",
   "bugs": {
@@ -85,6 +91,26 @@
     "markdownlint-cli2": "^0.24.0",
     "typescript": "^6.0.3",
     "vitest": "^5.1.0"
+  },
+  "peerDependencies": {
+    "@vitest/coverage-v8": "^5.0.0",
+    "markdownlint-cli2": ">=0.24.0",
+    "typescript": "^6.0.0",
+    "vitest": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vitest/coverage-v8": {
+      "optional": true
+    },
+    "markdownlint-cli2": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=24.0.0"

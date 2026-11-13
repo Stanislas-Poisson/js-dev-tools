@@ -10,7 +10,6 @@ updates:
     ignore:
       - dependency-name: 'typescript'
       - dependency-name: '@prettier/plugin-php'
-      - dependency-name: 'stylelint'
     # END dependency-policy (npm)
 
   - package-ecosystem: github-actions
